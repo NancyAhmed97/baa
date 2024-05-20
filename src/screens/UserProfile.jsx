@@ -14,10 +14,10 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'react-native-image-picker';
 import arrowleft from '../../assets/arrow-left.svg';
-import { AntDesign } from '@expo/vector-icons';
 
 import axios from 'axios';
 import ProfileComponent from '../components/ProfileComponent';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 
 const UserProfile = ({ route }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -59,7 +59,7 @@ const UserProfile = ({ route }) => {
         style={[styles.iconButton, styles.topLeft]}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign name='arrowleft' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
       </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.accountContainer}>

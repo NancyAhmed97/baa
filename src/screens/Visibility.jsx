@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { AntDesign } from '@expo/vector-icons';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 
 const Visibility = ({ route }) => {
   const [value, setValue] = useState(0);
@@ -83,13 +83,14 @@ const Visibility = ({ route }) => {
       imgBase64:imgBase64&&imgBase64
     });
   };
+  console.log(value);
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={[styles.iconButton, styles.topLeft]}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign name='arrowleft' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
       </TouchableOpacity>
       <ImageBackground
         source={{ uri: imageUri }}

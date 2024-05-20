@@ -8,9 +8,9 @@ import {
   Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import the navigation hook
-import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 
 const ChangePasswordScreen = () => {
   const navigation = useNavigation(); // Initialize navigation
@@ -45,7 +45,7 @@ const ChangePasswordScreen = () => {
           style={styles.circularButton}
           onPress={() => navigation.goBack()}
       >
-        <AntDesign name='arrowleft' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
       </TouchableOpacity>
       <Text style={styles.title}>تغيير كلمة المرور</Text>
 

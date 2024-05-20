@@ -1,8 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 
 const AboutUsScreen = () => {
   const navigation = useNavigation();
@@ -16,7 +16,7 @@ const AboutUsScreen = () => {
             navigation.goBack();
           }}
         >
-          <Ionicons name='arrow-back' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
         </TouchableOpacity>
       </View>
       <Text style={styles.title}>حول تطبيق باءه</Text>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   circularButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 25,
   },
 
   circularButton: {

@@ -6,11 +6,12 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native"; // Import the useNavigation hook
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { userMethod } from "../../app/user";
+import LeftArrow from "../../assets/SVG/LeftArrow";
+import RightArrow from "../../assets/SVG/RightArrow";
 
 const BioScreen = ({ route }) => {
   const [pio, setPio] = useState("");
@@ -116,7 +117,7 @@ const BioScreen = ({ route }) => {
         style={[styles.iconButton, styles.topLeft]}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign name="arrowleft" size={24} color="#9B9B9B" />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
       </TouchableOpacity>
 
       {/* Top-right arrow icon */}
@@ -124,7 +125,7 @@ const BioScreen = ({ route }) => {
         style={[styles.iconButton, styles.topRight]}
         onPress={handleContinue}
       >
-        <AntDesign name="arrowright" size={24} color="#ECB7B7" />
+          <RightArrow width={'24'} height={'24'} fill={'#ECB7B7'}/>
       </TouchableOpacity>
       <Text style={styles.title}>أكتب نبذة عنك..</Text>
       <View style={styles.inputContainer}>

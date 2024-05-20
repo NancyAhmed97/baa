@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
 import CheckBox from 'react-native-circle-checkbox';
+import LeftArrow from '../../assets/SVG/LeftArrow';
+import RightArrow from '../../assets/SVG/RightArrow';
 
 const PaymentScreen = ({ route }) => {
   const { selectedPlan } = route.params || {};
@@ -61,13 +62,13 @@ const PaymentScreen = ({ route }) => {
             navigation.goBack();
           }}
         >
-          <Ionicons name='arrow-back' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.circularButton}
           onPress={handleNextClick}
         >
-          <Ionicons name='arrow-forward' size={24} color='#ECB7B7' />
+          <RightArrow width={'24'} height={'24'} fill={'#ECB7B7'}/>
         </TouchableOpacity>
       </View>
       <Text style={styles.paymentHeader}> اختر وسيلة الدفع </Text>
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
   paymentOptions: {
     marginTop: 10,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     width: '90%',
   },
   paymentOption: {
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     fontFamily: 'Cairo',
-    marginLeft: 200,
+    
   },
   paymentButton: {
     marginTop: 50,
@@ -243,7 +244,9 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10,
+    marginHorizontal: 10,
+    justifyContent:'space-between',
+    width:'100%'
   },
   checkbox: {
     marginRight: 10,

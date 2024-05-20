@@ -7,7 +7,6 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 
@@ -39,6 +38,8 @@ const ProfileContainer = () => {
       <Image
         source={{ uri: `data:image/jpeg;base64,${userinfo.user.userArray.image}`}}
         style={styles.profileImage}
+        blurRadius={userinfo.user.userArray.visability}
+
       />
     </View>
   );

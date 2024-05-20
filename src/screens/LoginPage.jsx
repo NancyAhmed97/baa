@@ -8,13 +8,14 @@ import {
   Modal,
   Image,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import { useDispatch } from 'react-redux';
 import { userMethod } from '../../app/user';
+import LeftArrow from '../../assets/SVG/LeftArrow';
+import RightArrow from '../../assets/SVG/RightArrow';
 
 const ProfileScreen = ({ route }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -103,7 +104,7 @@ const ProfileScreen = ({ route }) => {
         style={[styles.iconButton, styles.topLeft]}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign name='arrowleft' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
       </TouchableOpacity>
 
       {/* Top-right arrow icon */}
@@ -111,7 +112,7 @@ const ProfileScreen = ({ route }) => {
         style={[styles.iconButton, styles.topRight]}
         onPress={handleContinue}
       >
-        <AntDesign name='arrowright' size={24} color='#ECB7B7' />
+                        <RightArrow width={'24'} height={'24'} fill={'#ECB7B7'}/>
       </TouchableOpacity>
 
       <Text style={styles.welcomeText}>مرحبًا بك مجددًا</Text>

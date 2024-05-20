@@ -7,12 +7,6 @@ import {
   Alert,
 } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  MaterialCommunityIcons,
-  AntDesign,
-  FontAwesome,
-  MaterialIcons,
-} from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import HomeScreen from './tabScreens/HomeScreen';
 import FavoriteScreen from './tabScreens/FavoriteScreen';
@@ -27,6 +21,11 @@ import { useDispatch } from 'react-redux';
 import SettingsScreen from './tabScreens/SettingsScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SearchScreen from './SearchScreen';
+import Cards from '../../assets/SVG/Cards';
+import Settings from '../../assets/SVG/Settings';
+import Star from '../../assets/SVG/Star';
+import Search from '../../assets/SVG/Search';
+import Msg from '../../assets/SVG/Msg';
 
 const Tab = createBottomTabNavigator();
 
@@ -56,7 +55,6 @@ const CustomTabBarButton = ({ children, onPress }) => {
             isPressed ? { backgroundColor: '#ECB7B7' } : null,
           ]}
         >
-          <AntDesign name='search1' size={30} color='#fff' />
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -145,7 +143,7 @@ const MainHome = () => {
           {/* Profile Container and Menu Icon */}
           <TouchableOpacity onPress={handleMyProfile}>
             <View style={styles.profileMenuContainer}>
-              <ProfileContainer  />
+              <ProfileContainer />
               {/* <TouchableWithoutFeedback onPress={handleMenuPress}>
               <View style={styles.menuButton}>
                 <MaterialCommunityIcons name='menu' size={24} color='black' />
@@ -175,8 +173,13 @@ const MainHome = () => {
                 options={{
                   tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
-                    
-                 <MaterialCommunityIcons name="cards" size={30} color={focused ? '#ECB7B7' : '#4B5867'}/>
+
+                      {focused ?
+                        <Cards width={30} height={30} fill={'#ECB7B7'} />
+                        :
+                        <Cards width={30} height={30} fill={'#4B5867'} />
+
+                      }
                     </View>
                   ),
                 }}
@@ -188,9 +191,13 @@ const MainHome = () => {
                 options={{
                   tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
-                 
-                <AntDesign name="mail" size={30}  color={focused ? '#ECB7B7' : '#4B5867'}/>
-                
+
+                      {focused ?
+                        <Msg width={30} height={30} fill={'#ECB7B7'} />
+                        :
+                        <Msg width={30} height={30} fill={'#4B5867'} />
+
+                      }
                     </View>
                   ),
                 }}
@@ -204,15 +211,19 @@ const MainHome = () => {
                 }}
               /> */}
 
-<Tab.Screen
+              <Tab.Screen
                 name='Search'
                 component={SearchScreen}
                 options={{
                   tabBarIcon: ({ focused }) => (
-                    <View style={[styles.searchButton,styles.tabIconContainer]}>
-                                 <AntDesign name="search1" size={30} color={focused ? '#ECB7B7' : '#fff'} />
+                    <View style={[styles.searchButton, styles.tabIconContainer]}>
+                      {focused ?
+                        <Search width={30} height={30} fill={'#ECB7B7'} />
+                        :
+                        <Search width={30} height={30} fill={'#fff'} />
 
-               
+                      }
+
                     </View>
                   ),
                 }}
@@ -224,12 +235,13 @@ const MainHome = () => {
                 options={{
                   tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
-                      <MaterialCommunityIcons
-                        name={focused ? 'star' : 'star-outline'}
-                        size={30}
-                        color={focused ? '#ECB7B7' : '#4B5867'}
-                      />
-               
+                      {focused ?
+                        <Star width={30} height={30} fill={'#ECB7B7'} />
+                        :
+                        <Star width={30} height={30} fill={'#4B5867'} />
+
+                      }
+
                     </View>
                   ),
                 }}
@@ -241,19 +253,17 @@ const MainHome = () => {
                 options={{
                   tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
-                   
-              
 
 
-<AntDesign name="setting" size={30} color={focused ? '#ECB7B7' : '#4B5867'} />
-                      {/* <Text
-                        style={{
-                          color: focused ? '#ECB7B7' : '#4B5867',
-                          fontSize: 12,
-                        }}
-                      >
-                        الاعدادات
-                      </Text> */}
+
+
+                      {focused ?
+                        <Settings width={30} height={30} fill={'#ECB7B7'} />
+                        :
+                        <Settings width={30} height={30} fill={'#4B5867'} />
+
+                      }
+
                     </View>
                   ),
                 }}

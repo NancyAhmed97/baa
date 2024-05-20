@@ -13,7 +13,7 @@ import {
     orderBy,
 } from "firebase/firestore";
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 const NewChat = ({ route }) => {
     const [messages, setMessages] = useState([])
     const userinfo = useSelector((state) => state);
@@ -97,7 +97,7 @@ const NewChat = ({ route }) => {
                         navigation.goBack();
                     }}
                 >
-                    <Ionicons name="arrow-back" size={24} color="#9B9B9B" />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
                 </TouchableOpacity>
             </View>
             <GiftedChat

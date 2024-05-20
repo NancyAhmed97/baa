@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import React, { useState } from 'react';
 import {
@@ -9,6 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 const ForgotPasswordScreen = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [phoneNumberError, setPhoneNumberError] = useState('');
@@ -58,7 +58,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
             navigation.goBack();
           }}
         >
-          <Ionicons name='arrow-back' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
         </TouchableOpacity>
       </View>
       <View style={styles.container}>

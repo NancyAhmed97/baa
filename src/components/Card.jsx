@@ -17,6 +17,8 @@ import {
   favoriteMethod,
   removeFavoriteMethod,
 } from '../../app/Favorite';
+import Msg from '../../assets/SVG/Msg';
+import Star from '../../assets/SVG/Star';
 
 const { width } = Dimensions.get('window');
 const Card = ({ card, toggleFavorite, isFavorite, favArr }) => {
@@ -30,7 +32,6 @@ const Card = ({ card, toggleFavorite, isFavorite, favArr }) => {
     return card.id == item.id;
   });
 
-
   return (
     <TouchableOpacity onPress={handleCardPress}>
       <View style={styles.buttonContainer}>
@@ -43,8 +44,10 @@ const Card = ({ card, toggleFavorite, isFavorite, favArr }) => {
               image: card.image,
             });
           }}
+         
         >
-          <Icon name='envelope' size={50} style={styles.icon} />
+          <Msg width={40} height={40} fill={'#424040'} />
+
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.gradientButton, styles.favoriteButton]}
@@ -68,17 +71,10 @@ const Card = ({ card, toggleFavorite, isFavorite, favArr }) => {
             }
           }}
         >
-          <Icon
-            name='star'
-            size={45}
-            style={[
-              styles.icon,
-              {
-                color:
-                  isFavorite || favStatus.length == 1 ? '#424040' : '#ECB7B7',
-              },
-            ]} // Directly apply color change here
-          />
+ 
+
+<Star width={40} height={40} fill={  isFavorite || favStatus.length == 1 ? '#424040' : '#ECB7B7'} />
+
         </TouchableOpacity>
       </View>
       <View
@@ -86,10 +82,17 @@ const Card = ({ card, toggleFavorite, isFavorite, favArr }) => {
       >
 
         <View style={styles.imageContainer}>
-          <Image source={require('../../assets/2.png')}
-            style={styles.image}
-          />
+          {card.image?
 
+<Image source={{ uri: `data:image/jpeg;base64,${card.image}`}} style={styles.image}
+blurRadius={card.visability}
+/>
+
+            :
+
+          <Image source={require('../../assets/2.png')}   style={styles.image}
+          />
+          }
           <View
             style={{
               position: 'absolute',
@@ -388,7 +391,7 @@ height:'86%',
     // shadowRadius: 3,
     // elevation: 5,
     // borderColor: 'black',
-    // borderWidth: 1
+    // borderWidth: 1,
   },
   icon: {
     color: '#424040',

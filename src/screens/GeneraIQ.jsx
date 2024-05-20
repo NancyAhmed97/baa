@@ -8,13 +8,14 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import ProgressBar from 'react-native-progress/Bar';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import RNPickerSelect from 'react-native-picker-select';
 import countries from '../../countries.json';
 import customCountries from '../../customCountry.json';
 import customCities from '../../customCities.json';
+import RightArrow from '../../assets/SVG/RightArrow';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 
 const GeneralQ = ({ navigation, route }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -273,10 +274,10 @@ const GeneralQ = ({ navigation, route }) => {
       inputPlaceholder: '---',
       value: userBirthday
         ? userBirthday.toLocaleDateString('ar-EG', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
         : '',
       handleChange: showDatePicker,
     },
@@ -336,14 +337,16 @@ const GeneralQ = ({ navigation, route }) => {
             style={styles.circularButton}
             onPress={handlePreviousClick}
           >
-            <Ionicons name='arrow-back' size={24} color='#9B9B9B' />
+            <LeftArrow width={'24'} height={'24'} fill={'#9B9B9B'} />
+
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.circularButton}
             onPress={handleNextClick}
           >
-            <Ionicons name='arrow-forward' size={24} color='#ECB7B7' />
+            <RightArrow width={'24'} height={'24'} fill={'#ECB7B7'} />
+
           </TouchableOpacity>
         </View>
 

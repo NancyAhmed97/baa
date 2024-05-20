@@ -1,5 +1,4 @@
 // PasswordVerificationScreen.js
-import { AntDesign } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
   View,
@@ -8,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import LeftArrow from '../../assets/SVG/LeftArrow';
 
 const PasswordVerificationScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
@@ -30,7 +30,7 @@ const PasswordVerificationScreen = ({ navigation }) => {
         style={[styles.iconButton, styles.topLeft]}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign name='arrowleft' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
       </TouchableOpacity>
 
       <View style={styles.container}>

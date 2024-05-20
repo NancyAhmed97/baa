@@ -9,7 +9,6 @@ import {
   StyleSheet,
   Modal,
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 
 const ProfileComponent = ({
   profile,

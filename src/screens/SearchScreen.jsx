@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignSelf: 'center',
         marginBottom:20,
-        marginTop:10
+        marginTop:10,
+    textAlign:'right'
     },
 });
 export default SearchScreen

@@ -11,7 +11,6 @@ import {
   Modal,
   TextInput,
 } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -21,7 +20,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { userMethod } from '../../app/user';
 import { useDispatch } from 'react-redux';
-import { Ionicons } from '@expo/vector-icons';
+import LeftArrow from '../../assets/SVG/LeftArrow';
+import Plus from '../../assets/SVG/Plus';
 
 const Profile = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -55,8 +55,7 @@ const Profile = () => {
         const token = await AsyncStorage.getItem('login');
         setGetData(JSON.parse(token));
         const response = await axios.post(
-          `https://marriage-application.onrender.com/getsubscription?id=${
-            userinfo.user.userArray.id
+          `https://marriage-application.onrender.com/getsubscription?id=${userinfo.user.userArray.id
           }`
         );
         if (response.status) {
@@ -96,8 +95,8 @@ const Profile = () => {
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
-      base64:true
-  
+      base64: true
+
     });
 
     if (!result.cancelled) {
@@ -158,7 +157,7 @@ const Profile = () => {
       // Adjust these values as needed to fit your design
       maxWidth: Constants.windowWidth,
       maxHeight: Constants.windowWidth,
-      base64:true
+      base64: true
     });
 
     if (!pickerResult.canceled) {
@@ -172,13 +171,13 @@ const Profile = () => {
             `https://marriage-application.onrender.com/updateuser`,
             {
               id: userinfo.user.userArray.id,
-              image:pickerResult.assets[0].base64
+              image: pickerResult.assets[0].base64
             }
           );
           setIsEditMode(false);
           setProfilePicture(pickerResult.assets[0].uri);
           dispatch(userMethod(response.data));
-          
+
           // if (response.status === 200) {
           //   setIsEditMode(false);
           //   setProfilePicture(pickerResult.assets[0].uri);
@@ -287,19 +286,33 @@ const Profile = () => {
   console.log(userinfo.user.userArray.visability);
   return (
     <SafeAreaView style={{ flex: 1 }}>
-         <TouchableOpacity
-          style={styles.circularButton}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <Ionicons name='arrow-back' size={24} color='#9B9B9B' />
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.circularButton}
+        onPress={() => {
+          navigation.goBack();
+        }}
+      >
+        <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'} />
+      </TouchableOpacity>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.container}>
           <View style={styles.profileContainer}>
             <TouchableOpacity onPress={openProfileImageOptions}>
-              <Image
+              {profilePicture?
+                    <Image
+                    source={{ uri:profilePicture }}
+                    style={styles.profileImageLarge}
+                  />
+            :
+            <Image
+            source={{ uri:`data:image/jpeg;base64,${userinfo.user.userArray.image}` }}
+            style={styles.profileImageLarge}
+            blurRadius={userinfo.user.userArray.visability}
+          />
+            
+            }
+        
+              {/* <Image
                 source={{
                   uri: profilePicture
                     ? profilePicture
@@ -308,6 +321,9 @@ const Profile = () => {
                 style={styles.profileImageLarge}
                 blurRadius={userinfo.user.userArray.visability}
               />
+              <Image source={{ uri: `data:image/jpeg;base64,${userinfo.user.userArray.image}`}} style={styles.image}
+blurRadius={userinfo.user.userArray.visability}
+/> */}
             </TouchableOpacity>
             <View style={styles.profileInfoContainer}>
               {isEditMode ? (
@@ -478,11 +494,18 @@ const Profile = () => {
               margin: 24,
             }}
           >
-            <TouchableOpacity onPress={openImagePickerAsync}>
+            <TouchableOpacity onPress={openImagePickerAsync}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center'
+              }}
+            >
               <Text style={styles.addPhotosText}>
                 اضافة صور
-                <AntDesign name='plus' size={20} color='red' />
+
               </Text>
+              <Plus width={'20'} height={'20'} fill={'red'} />
+
             </TouchableOpacity>
             <Text style={styles.galleryTitleText}>صوري</Text>
           </View>
@@ -498,7 +521,7 @@ const Profile = () => {
                     style={styles.galleryImageContainer}
                   >
                     <Image
-                    
+
                       source={{ uri: `data:image/jpeg;base64,${image}` }}
                       style={styles.galleryImage}
                     />
@@ -507,17 +530,17 @@ const Profile = () => {
               })
             ) : (
 
-<View
-style={{
-  justifyContent:'center',
-  alignItems:'center',
-  width:'100%'
-}}
->
-<Text>لا توجد صور</Text>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  width: '100%'
+                }}
+              >
+                <Text>لا توجد صور</Text>
 
-</View>
-)}
+              </View>
+            )}
           </View>
         </View>
 
@@ -806,7 +829,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderWidth: 2,
     borderColor: '#F2F2F2',
-    marginHorizontal:20
+    marginHorizontal: 20
   },
 });
 

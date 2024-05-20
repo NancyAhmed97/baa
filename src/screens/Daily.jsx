@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import Bar from "react-native-progress/Bar";
 import axios from "axios";
+import LeftArrow from "../../assets/SVG/LeftArrow";
+import RightArrow from "../../assets/SVG/RightArrow";
 
 const DailyHabitsQuestion = ({ navigation, route }) => {
   const initialStep = route.params?.currentStep || 19; // Default to 7 if not provided
@@ -174,14 +175,15 @@ console.log("habits",habits);
           style={styles.circularButton}
           onPress={handlePreviousClick}
         >
-          <Ionicons name="arrow-back" size={24} color="#9B9B9B" />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.circularButton}
           onPress={handleNextClick}
         >
-          <Ionicons name="arrow-forward" size={24} color="#ECB7B7" />
+          
+          <RightArrow width={'24'} height={'24'} fill={'#ECB7B7'}/>
         </TouchableOpacity>
       </View>
 

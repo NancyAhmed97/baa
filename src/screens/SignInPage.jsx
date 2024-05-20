@@ -13,6 +13,11 @@ import {
 import * as ExpoImagePicker from 'expo-image-picker';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import LeftArrow from '../../assets/SVG/LeftArrow';
+import RightArrow from '../../assets/SVG/RightArrow';
+import Eye from '../../assets/SVG/Eye';
+import EyeOf from '../../assets/SVG/EyeOf';
+import Edite from '../../assets/SVG/Edite';
 
 const SignInPage = ({ route }) => {
   const [avatarSource, setAvatarSource] = useState(null);
@@ -22,6 +27,8 @@ const SignInPage = ({ route }) => {
   const [imgBase64, setImgBase64] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible2, setIsPasswordVisible2] = useState(false);
   const navigation = useNavigation();
   const selectedGender = route.params?.selectedGender;
   const selectedCountry = route.params?.selectedCountry;
@@ -75,7 +82,7 @@ const SignInPage = ({ route }) => {
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
-      base64:true
+      base64: true
     });
 
     if (!result.cancelled && result.assets.length > 0) {
@@ -128,7 +135,7 @@ const SignInPage = ({ route }) => {
         selectedEdu: selectedEdu,
         selectedSocity: selectedSocity,
         imagePic: avatarSource ? avatarSource.uri : null,
-        imgBase64:imgBase64,
+        imgBase64: imgBase64,
         username: username,
         password: password,
       });
@@ -156,7 +163,7 @@ const SignInPage = ({ route }) => {
         style={[styles.iconButton, styles.topLeft]}
         onPress={() => navigation.goBack()}
       >
-        <AntDesign name='arrowleft' size={24} color='#9B9B9B' />
+        <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'} />
       </TouchableOpacity>
 
       {/* Top-right arrow icon */}
@@ -164,7 +171,8 @@ const SignInPage = ({ route }) => {
         style={[styles.iconButton, styles.topRight]}
         onPress={handleContinue}
       >
-        <AntDesign name='arrowright' size={24} color='#ECB7B7' />
+        <RightArrow width={'24'} height={'24'} fill={'#ECB7B7'} />
+
       </TouchableOpacity>
 
       <TouchableOpacity onPress={handleDownloadImage}>
@@ -179,7 +187,7 @@ const SignInPage = ({ route }) => {
           )}
 
           <View style={styles.editIconContainer}>
-            <AntDesign name='edit' size={24} color='black' />
+            <Edite width={24} height={'24'} fill='black' />
           </View>
         </View>
       </TouchableOpacity>
@@ -188,54 +196,79 @@ const SignInPage = ({ route }) => {
       <View style={styles.whiteBox}>
         {/* {<Text style={styles.title}>مستخدم جديد</Text>} */}
         <ScrollView
-        style={{
-          width:'100%'
-        }}
+          style={{
+            width: '100%'
+          }}
         >
-        <TextInput
-          style={[styles.input,{marginTop:50}]}
-          placeholder='اسم المستخدم'
-          value={username}
-          onChangeText={setUsername}
-        />
+          <TextInput
+            style={[styles.input, { marginTop: 50 }]}
+            placeholder='اسم المستخدم'
+            value={username}
+            onChangeText={setUsername}
+          />
 
-        {/* Password Input */}
-        <TextInput
-          style={[styles.input, styles.passwordInput]}
-          placeholder='كلمة المرور'
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => {
-            setPassword(text);
-            setPasswordError('');
-          }}
-        />
+          {/* Password Input */}
+          <View style={styles.passwordContainer}>
+          <TextInput
+            style={[styles.inputPass, styles.passwordInput]}
+            placeholder='كلمة المرور'
+            secureTextEntry={!isPasswordVisible}
+            value={password}
+            onChangeText={(text) => {
+              setPassword(text);
+              setPasswordError('');
+            }}
+          />
+            <TouchableOpacity
+              style={styles.toggleButton}
+              onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+            >
+    
+              {isPasswordVisible ?
+                <Eye width={'30'} height={'30'} fill={'black'} />
+                :
+                <EyeOf width={'30'} height={'30'} fill={'black'} />
+              }
+            </TouchableOpacity>
+          </View>
 
-        {/* Confirm Password Input */}
-        <TextInput
-          style={[styles.input, styles.passwordInput]}
-          placeholder='تأكيد كلمة المرور'
-          secureTextEntry={true}
-          value={confirmPassword}
-          onChangeText={(text) => {
-            setConfirmPassword(text);
-            setPasswordError('');
-          }}
-        />
+          {/* Confirm Password Input */}
+          <View  style={styles.passwordContainer}>
+          <TextInput
+            style={[styles.inputPass, styles.passwordInput]}
+            placeholder='تأكيد كلمة المرور '
+            secureTextEntry={!isPasswordVisible2}
+            value={confirmPassword}
+            onChangeText={(text) => {
+              setConfirmPassword(text);
+              setPasswordError('');
+            }}
+          />
+            <TouchableOpacity
+              style={styles.toggleButton}
+              onPress={() => setIsPasswordVisible2(!isPasswordVisible2)}
+            >
+              {isPasswordVisible2 ?
+                <Eye width={'30'} height={'30'} fill={'black'} />
+                :
+                <EyeOf width={'30'} height={'30'} fill={'black'} />
+              }
+            </TouchableOpacity>
+          </View>
 
-        {passwordError && <Text style={styles.errorText}>{passwordError}</Text>}
-        {passwordError && (
-          <Text style={styles.passwordRequirement}>
-            Password must:
-            {'\n'}- Be at least 8 characters long
-            {'\n'}- Contain at least one uppercase letter
-            {'\n'}- Contain at least one lowercase letter
-            {'\n'}- Contain at least one number
-            {'\n'}- Contain at least one symbol
-          </Text>
-        )}
+          {passwordError && <Text style={styles.errorText}>{passwordError}</Text>}
+          {passwordError && (
+            <Text style={styles.passwordRequirement}>
+              Password must:
+              {'\n'}- Be at least 8 characters long
+              {'\n'}- Contain at least one uppercase letter
+              {'\n'}- Contain at least one lowercase letter
+              {'\n'}- Contain at least one number
+              {'\n'}- Contain at least one symbol
+            </Text>
+          )}
 
-</ScrollView>
+        </ScrollView>
       </View>
 
       {/* Image Picker Modal */}
@@ -301,7 +334,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    width: '80%',
+    width: '100%',
     height: 55,
     borderWidth: 1,
     borderColor: '#b2b8bf', // Change border color to match the white box
@@ -310,7 +343,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: 'white', // Add background color to the input
     alignSelf: 'center', // Center the input within the white box
-    textAlign:'right'
+    textAlign: 'right'
   },
   imageContainer: {
     position: 'relative',
@@ -329,14 +362,25 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: 75,
   },
+  inputPass: {
+    width: '100%',
+    height: 55,
+    borderWidth: 1,
+    borderColor: '#b2b8bf', // Change border color to match the white box
+    borderRadius: 10,
+    marginVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: 'white', // Add background color to the input
+    alignSelf: 'center', // Center the input within the white box
+  },
   blankImage: {
     width: '100%',
     height: '100%',
   },
   editIconContainer: {
     position: 'absolute',
-    bottom: 5,
-    right: 5,
+    bottom: 0,
+    right: 0,
   },
   modalContainer: {
     flex: 1,
@@ -419,6 +463,21 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderWidth: 2,
     borderColor: '#F2F2F2',
+  },
+  passwordContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    height: 55,
+    borderRadius: 10,
+    marginVertical: 10,
+    marginTop: 10,
+    backgroundColor: 'white',
+    alignSelf: 'center',
+  },
+  toggleButton: {
+    position: 'absolute',
+    left:'3%',
   },
 });
 

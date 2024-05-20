@@ -1,5 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -13,6 +11,8 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { useSelector } from 'react-redux';
+import LeftArrow from '../../assets/SVG/LeftArrow';
+import RightArrow from '../../assets/SVG/RightArrow';
 
 const Subscription = () => {
   const [selectedPlan, setSelectedPlan] = useState('');
@@ -49,7 +49,7 @@ const Subscription = () => {
             navigation.goBack();
           }}
         >
-          <Ionicons name='arrow-back' size={24} color='#9B9B9B' />
+          <LeftArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.circularButton}
@@ -59,7 +59,7 @@ const Subscription = () => {
             });
           }}
         >
-          <Ionicons name='arrow-forward' size={24} color='#ECB7B7' />
+          <RightArrow width={'30'} height={'30'} fill={'#9B9B9B'}/>
         </TouchableOpacity>
       </View>
 
@@ -236,7 +236,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-
     marginTop: 10,
     width: '100%',
   },
